@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_booking/hotel_detail.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,14 +25,7 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Color(0xfff7f7f8),
-          // leading: Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Icon(
-          //     Icons.sort,
-          //     size: 35,
-          //     color: Colors.black,
-          //   ),
-          // ),
+          
         ),
         body: ListView(
           children: <Widget>[
@@ -62,9 +56,12 @@ class HomeScreen extends StatelessWidget {
             ),
             hotelPreview(),
             checkInInfo(),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             InkWell(
-              onTap: () {},
+               onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => HotelDetails())),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -112,8 +109,9 @@ class HomeScreen extends StatelessWidget {
           child: ListView(
             // mainAxisAlignment: MainAxisAlignment.start,
             // crossAxisAlignment: CrossAxisAlignment.start,
+            physics: NeverScrollableScrollPhysics(),
             children: <Widget>[
-              checkInListTile(true, "Location", "Location"),
+              checkInListTile(true, "Location", "London", Icons.location_on),
               SizedBox(
                 height: 20,
               ),
@@ -123,7 +121,7 @@ class HomeScreen extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                       flex: 2,
-                      child: checkInListTile(true, "Check in", "01.08.2020")),
+                      child: checkInListTile(true, "Check in", "01.08.2020", Icons.card_travel),),
                   Expanded(
                     flex: 1,
                     child: Container(
@@ -136,12 +134,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: checkInListTile(false, "Check out", "10.08.2020"),
+                    child: checkInListTile(false, "Check out", "10.08.2020", Icons.location_on),
                   ),
                 ],
               ),
-              // checkInListTile(true, "Check in", "01.08.2020"),
-              checkInListTile(true, "Person", "1 adult"),
+              SizedBox(
+                height: 20,
+              ),
+              checkInListTile(true, "Person", "1 adult", Icons.people),
               SizedBox(
                 height: 20,
               )
@@ -152,7 +152,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  ListTile checkInListTile(bool leading, String title, String subtitle) {
+  ListTile checkInListTile(bool leading, String title, String subtitle, IconData icon) {
     if (leading)
       return ListTile(
         leading: Container(
@@ -162,7 +162,7 @@ class HomeScreen extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(15)),
               color: Color(0xfff9f5ff)),
           child: Icon(
-            Icons.location_on,
+            icon,
             size: 30,
             color: Color(0xff7166f9),
           ),
