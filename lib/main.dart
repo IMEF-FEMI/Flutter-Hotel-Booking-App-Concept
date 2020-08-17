@@ -185,7 +185,7 @@ class HomeScreen extends StatelessWidget {
           subtitle,
           style: TextStyle(
               fontWeight: FontWeight.w500,
-              fontSize: 17,
+              fontSize: 15,
               color: Color(0xff000000)),
         ),
         onTap: () {},
@@ -209,7 +209,7 @@ class HomeScreen extends StatelessWidget {
         subtitle,
         style: TextStyle(
             fontWeight: FontWeight.w500,
-            fontSize: 16,
+            fontSize: 15,
             color: Color(0xff000000)),
       ),
       onTap: () {},
